@@ -5,8 +5,7 @@
           Service </div>
           <CarIcon
           :class="{'car-animation': !route.query.search}"
-          class="max-w-[240px] transition-all z-30 md:max-w-[400px]"
-          style="overflow: visible;" />
+          class="max-w-[240px] transition-all z-30 md:max-w-[400px]"/>
         <RoadIcon class="absolute bottom-0 right-0" />
         <LineIcon class="absolute -bottom-20 lg:-bottom-10 xl:bottom-10 2xl:bottom-[10%]" />
     </div>
@@ -24,12 +23,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import CarIcon from 'icons/car.svg'
+import CarIcon from '../components/CarIcon.vue'
 import RoadIcon from 'icons/road.svg'
 import LineIcon from 'icons/line.svg'
 import { fetchDelivery } from '../service';
 import { useRoute } from 'vue-router';
-import { computed, onBeforeMount, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import DeliveryCard from '../components/DeliveryCard.vue'
 
 const route = useRoute()
@@ -48,29 +47,19 @@ const resFeik = [
 const fetchDeliveryInfo = (search: string) => {
   fetchDelivery(search)
     .then((res) => {
+      isView.value = false
       deliveryInfo.value = res;
     })
     .catch((e) => {
       if(e instanceof Error)
         console.error(e.message);
-    }).finally(() => {
-      deliveryInfo.value = resFeik;
-    });
+    })
 };
 const toggleActiveCard = (index: number) => {
   activeElementIndex.value = index;
 };
 
-const handleRouteChange = () => {
-  setTimeout(() => {
-    isView.value = !cityName.value;
-  }, 400);
-};
 
-onBeforeMount(() => {
-  handleRouteChange();
-  fetchDeliveryInfo(cityName.value as string);
-});
 watch(() => cityName.value, (newValue, oldValue) => {
   if (newValue !== oldValue) {
     fetchDeliveryInfo(newValue);
@@ -97,7 +86,7 @@ watch(() => cityName.value, (newValue, oldValue) => {
           transform: translate(0, 0);
       }
       50% {
-          transform: translate(20px, 20px);
+          transform: translate(40px, 40px);
   }
 }
 }

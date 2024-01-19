@@ -3,7 +3,7 @@
     @click="toggleCard()"
     :disabled="!props.available"
     :class="{'shadow-input': props.isActive}"
-    class="w-full flex flex-row self-stretch bg-white border border-[#E9F0EB] rounded-[22px] cursor-pointer overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed"
+    class="w-full h-full flex flex-row self-stretch bg-white border border-[#E9F0EB] rounded-[22px] cursor-pointer overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed"
   >
     <div class="w-full h-full flex flex-row px-8 py-6">
       <div class="w-1/2 flex flex-col items-start">
@@ -17,7 +17,7 @@
       <SmallCarIcon  v-else-if="props.type === 'courier'" class=" ml-auto w-[140px]"/>
       <BoxIcon v-else-if="props.type === 'post'"  class="ml-auto w-[140px]" />
     </div>
-    <div v-if="props.isActive && props.available" class="w-[16%] min-h-[160px] h-full flex justify-center items-center bg-activeGradient">
+    <div v-if="props.isActive && props.available" class="w-[16%] min-h-[200px] h-full flex justify-center items-center bg-activeGradient">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff" viewBox="0 0 20 20">
         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
       </svg>
