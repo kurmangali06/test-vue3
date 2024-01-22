@@ -39,11 +39,6 @@ const activeElementIndex = ref();
 const cityName = computed(() => {
   return route.query.search as string;
 });
-const resFeik = [
-{city: "nur-sultan", type: "pickup", available: false, "price": 0.00},
-{city: "nur-sultan", type: "courier", available: true, "price": 9.99},
-{city: "nur-sultan", type: "post", available: true, "price": 15.99}
-]
 const fetchDeliveryInfo = (search: string) => {
   fetchDelivery(search)
     .then((res) => {
